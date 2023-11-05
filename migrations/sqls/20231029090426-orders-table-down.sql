@@ -1,1 +1,1 @@
-drop table orders CASCADE;
+DROP TABLE orders CASCADE;

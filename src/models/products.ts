@@ -12,7 +12,7 @@ export class ProductStore {
 		try {
 			// @ts-ignore
 			const conn = await Client.connect();
-			const sql = 'SELECT * FROM products';
+			const sql = 'SELECT * FROM products;';
 
 			const result = await conn.query(sql)
 
@@ -24,9 +24,9 @@ export class ProductStore {
 		}
 	}
 
-	async show(id: string): Promise<Product> {
+	async show(id: number): Promise<Product> {
 		try {
-			const sql = 'SELECT * FROM products WHERE id=($1)'
+			const sql = 'SELECT * FROM products WHERE id=($1);'
 			// @ts-ignore
 			const conn = await Client.connect()
 
@@ -44,14 +44,13 @@ export class ProductStore {
 		try {
 			// @ts-ignore
 			const conn = await Client.connect()
-			const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *'
+			const sql = 'INSERT INTO products (name, price) VALUES($1, $2) RETURNING *;'
 
 			const result = await conn.query(sql, [p.name, p.price])
-			const product = result.rows[0]
 
 			conn.release()
 
-			return product
+			return result.rows[0]
 		} catch (err) {
 			throw new Error(`unable create product: ${err}`)
 		}
@@ -69,16 +68,15 @@ export class ProductStore {
 
 			// @ts-ignore
 			const result = await conn.query(sql, [p.name, p.price, p.id])
-			const product = result.rows[0]
 			conn.release()
 
-			return product
+			return result.rows[0]
 		} catch (err) {
 			throw new Error(`unable update product ${p.id}: ${err}`)
 		}
 	}
 
-	async delete(id: string): Promise<Product> {
+	async delete(id: number): Promise<Product> {
 		try {
 			const sql = 'DELETE FROM products WHERE id=($1) returning *;'
 			// @ts-ignore

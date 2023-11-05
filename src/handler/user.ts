@@ -1,25 +1,16 @@
 import express, { Request, Response } from "express";
 import { User, UserStore } from "../models/users";
-import jwt from 'jsonwebtoken'
 import { verifyAuthToken } from "../utils/verify-auth-token";
 
 const store = new UserStore();
 
-const user_routes = (app: express.Application) => {
+const userRoutes = (app: express.Application): void => {
 	app.get('/users', verifyAuthToken, index)
-
 	app.get('/users/:id', verifyAuthToken, show)
-
 	app.post('/users', verifyAuthToken, create)
-
-	app.post('/users/auth', authenticate)
-
-	app.put('/users/:id', verifyAuthToken, update)
-
-	app.delete('/users/:id', verifyAuthToken, remove)
 }
 
-const index = async(req: Request, res: Response) => {
+const index = async(req: Request, res: Response): Promise<void> => {
 	try {
 		const users = await store.index()
 
@@ -30,9 +21,9 @@ const index = async(req: Request, res: Response) => {
 	}
 }
 
-const show = async(req: Request, res: Response) => {
+const show = async(req: Request, res: Response): Promise<void> => {
 	try {
-		const user = await store.show(req.params.id)
+		const user = await store.show(+req.params.id)
 
 		res.json(user)
 	} catch (err) {
@@ -41,59 +32,22 @@ const show = async(req: Request, res: Response) => {
 	}
 }
 
-const create = async(req: Request, res: Response) => {
+const create = async(req: Request, res: Response): Promise<void> => {
 	const user: User = {
 		username: req.body.username,
 		password: req.body.password,
+		firstName: req.body.firstName,
+		lastName: req.body.lastName,
 	}
 
 	try {
 		const newUser = await store.create(user)
-		const token = jwt.sign(
-			{ user: newUser },
-			// @ts-ignore
-			process.env.TOKEN_SECRET
-		);
-		res.json(token)
+
+		res.json(newUser)
 	} catch (err) {
 		res.status(400)
 		res.json(err)
 	}
 }
 
-const update = async(req: Request, res: Response) => {
-	try {
-	} catch (err) {
-		res.status(400)
-		res.json(err)
-	}
-}
-
-const remove = async(req: Request, res: Response) => {
-	try {
-		await store.delete(req.body.id)
-		res.send('Delete success')
-	} catch (err) {
-		res.status(400)
-		res.json(err)
-	}
-}
-
-const authenticate = async(req: Request<User>, res: Response) => {
-	const user: User = {
-		username: req.body.username,
-		password: req.body.password,
-	}
-
-	try {
-		const u = await store.authenticate(user.username, user.password)
-		// @ts-ignore
-		const token = jwt.sign({ user: u }, process.env.TOKEN_SECRET);
-		res.json(token)
-	} catch (error) {
-		res.status(401)
-		res.json({ error })
-	}
-}
-
-export default user_routes;
+export default userRoutes;

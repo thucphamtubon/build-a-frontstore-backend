@@ -2,14 +2,14 @@
   "dev": {
     "driver": "pg",
     "host": "127.0.0.1",
-    "database": "front_store",
+    "database": "frontstore",
     "user": "hungcm5",
     "password": "hungcm5"
   },
   "test": {
     "driver": "pg",
     "host": "127.0.0.1",
-    "database": "full_stack_test",
+    "database": "frontstore_test",
     "user": "hungcm5",
     "password": "hungcm5"
   }

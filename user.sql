@@ -5,10 +5,10 @@ CREATE TABLE users
 (
     id              SERIAL PRIMARY KEY,
     username        VARCHAR(100),
-    password_digest VARCHAR
+    password VARCHAR
 );
 
-INSERT INTO users(id, username, password_digest)
+INSERT INTO users(id, username, password)
 values (1, 'supper_admin', '$2b$10$melBF4.J3ryDpyg1rD/Z/OvfqsohcaXavblIQffmMaAFSnUy.XEFq');
 SELECT *
 from users;
@@ -96,9 +96,9 @@ DROP TABLE users CASCADE;
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
     username VARCHAR(100),
-    password_digest VARCHAR,
-    first_name VARCHAR(100),
-    last_name VARCHAR(100)
+    password VARCHAR,
+    firstName VARCHAR(100),
+    lastName VARCHAR(100)
 );
 
 SELECT * FROM products ORDER BY price DESC LIMIT 5;

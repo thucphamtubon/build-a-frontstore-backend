@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="front_store@localhost" uuid="95ff7f58-71ac-438f-abe7-a84e9fb707e4">
+    <data-source source="LOCAL" name="frontstore@localhost" uuid="83098820-f915-4333-ac64-7ddaeb6de44d">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/front_store</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/frontstore</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="full_stack_test@localhost" uuid="32bd2502-e35c-449a-a9a9-9cd1e0183995">
+    <data-source source="LOCAL" name="frontstore_test@localhost" uuid="3155fc7b-d693-4ad6-8f1d-1dfac86e7f89">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://localhost:5432/full_stack_test</jdbc-url>
+      <jdbc-url>jdbc:postgresql://localhost:5432/frontstore_test</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

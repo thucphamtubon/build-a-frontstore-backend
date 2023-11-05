@@ -1,1 +1,1 @@
-drop table products CASCADE;
+DROP TABLE products CASCADE;

@@ -1,1 +1,1 @@
-drop table order_products CASCADE;
+DROP TABLE order_products CASCADE;

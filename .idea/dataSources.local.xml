@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal" created-in="WS-232.8660.143">
-    <data-source name="front_store@localhost" uuid="95ff7f58-71ac-438f-abe7-a84e9fb707e4">
+    <data-source name="frontstore@localhost" uuid="83098820-f915-4333-ac64-7ddaeb6de44d">
       <database-info product="PostgreSQL" version="16.0" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.0" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>
@@ -10,13 +10,16 @@
       <user-name>hungcm5</user-name>
       <schema-mapping>
         <introspection-scope>
-          <node kind="database" qname="@">
-            <node kind="schema" qname="@" />
+          <node negative="1">
+            <node kind="database" qname="@">
+              <node kind="schema" qname="@" />
+            </node>
+            <node kind="database" qname="frontstore" />
           </node>
         </introspection-scope>
       </schema-mapping>
     </data-source>
-    <data-source name="full_stack_test@localhost" uuid="32bd2502-e35c-449a-a9a9-9cd1e0183995">
+    <data-source name="frontstore_test@localhost" uuid="3155fc7b-d693-4ad6-8f1d-1dfac86e7f89">
       <database-info product="PostgreSQL" version="16.0" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.6.0" dbms="POSTGRES" exact-version="16.0" exact-driver-version="42.6">
         <identifier-quote-string>&quot;</identifier-quote-string>
       </database-info>

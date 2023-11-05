@@ -25,13 +25,15 @@
     "tsc-watch": "^6.0.4"
   },
   "scripts": {
-    "migrate": "db-migrate --env test up && db-migrate up",
-    "test": "rm -rf dist && npx tsc && db-migrate reset && db-migrate up && jasmine && db-migrate reset",
+    "jasmine": "npx tsc && jasmine",
+    "build": "npx tsc",
+    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
+    "test": "export ENV=test && npx tsc && db-migrate --env test reset && db-migrate --env test up && jasmine && db-migrate --env test reset || db-migrate --env test reset",
     "testdb": "db-migrate up && db-migrate reset",
-    "reset": "db-migrate reset",
-    "jasmine": "rm -rf dist && npx tsc && jasmine",
-    "build": "rm -rf dist && npx tsc",
-    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'"
+    "db-up": "db-migrate up",
+    "db-down": "db-migrate down",
+    "reset-test": "db-migrate --env test reset",
+    "reset": "db-migrate reset"
   },
   "author": "thucphamtubon",
   "license": "ISC",

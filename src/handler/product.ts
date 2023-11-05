@@ -1,21 +1,18 @@
 import express, { Request, Response } from "express";
 import { verifyAuthToken } from "../utils/verify-auth-token";
 import { Product, ProductStore } from "../models/products";
-import { DashboardQueries } from "../services/dashboard";
 
-const dashboardQueries = new DashboardQueries();
 const store = new ProductStore();
 
-const productRoutes = (app: express.Application) => {
+const productRoutes = (app: express.Application): void => {
 	app.get('/products', index);
-	app.get('/products/five-most-expensive', showFiveMostExpensive);
-	app.post('/products', verifyAuthToken, create);
 	app.get('/products/:id', show);
-	app.put('/products/:id', verifyAuthToken, update);
+	app.post('/products', verifyAuthToken, create);
+	app.put('/products', verifyAuthToken, update);
 	app.delete('/products/:id', verifyAuthToken, deleteProduct);
 }
 
-const index = async(req: Request, res: Response) => {
+const index = async(req: Request, res: Response): Promise<void> => {
 	try {
 		const products = await store.index();
 
@@ -26,7 +23,18 @@ const index = async(req: Request, res: Response) => {
 	}
 }
 
-const create = async(req: Request, res: Response) => {
+const show = async(req: Request, res: Response): Promise<void> => {
+	try {
+		const product = await store.show(+req.params.id);
+
+		res.json(product);
+	} catch (err) {
+		res.status(400);
+		res.json(err);
+	}
+}
+
+const create = async(req: Request, res: Response): Promise<void> => {
 	const product: Product = {
 		id: +req.params.id,
 		name: req.body.name,
@@ -37,28 +45,6 @@ const create = async(req: Request, res: Response) => {
 		const newProduct = await store.create(product)
 
 		res.json(newProduct);
-	} catch (err) {
-		res.status(400);
-		res.json(err);
-	}
-}
-
-const show = async(req: Request, res: Response) => {
-	try {
-		const product = await store.show(req.params.id);
-
-		res.json(product);
-	} catch (err) {
-		res.status(400);
-		res.json(err);
-	}
-}
-
-const showFiveMostExpensive = async(req: Request, res: Response) => {
-	try {
-		const products = await dashboardQueries.fiveMostExpensive();
-
-		res.json(products);
 	} catch (err) {
 		res.status(400);
 		res.json(err);
@@ -84,7 +70,7 @@ const update = async(req: Request, res: Response) => {
 
 const deleteProduct = async(req: Request, res: Response) => {
 	try {
-		const product = await store.delete(req.params.id);
+		const product = await store.delete(+req.params.id);
 
 		res.json(product);
 	} catch (err) {
