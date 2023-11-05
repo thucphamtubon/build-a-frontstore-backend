@@ -136,6 +136,10 @@ describe("Order Model", (): void => {
 		expect(orderStore.getOrderByUserId).toBeDefined();
 	});
 
+	it('should have a add order product method', (): void => {
+		expect(orderStore.addProduct).toBeDefined();
+	});
+
 	it('create method should add a order', async(): Promise<void> => {
 		await userStore.create({ username: 'hungcm5', firstName: 'Hung Cao', lastName: 'Hung Cao', password: '123456' })
 		await productStore.create({ name: 'CocaCola', price: 100 })
@@ -151,6 +155,12 @@ describe("Order Model", (): void => {
 		const result = await orderStore.addProduct(10, "1", "2");
 
 		expect(result).toEqual({ id: 1, product_id: "2", order_id: "1", quantity: 10 });
+	});
+
+	it('get method should show current order by user', async(): Promise<void> => {
+		const result = await orderStore.getOrderByUserId('2');
+
+		expect(result).toEqual([{ id: 1, user_id: "2", status: 'open' }]);
 	});
 
 	it('index method should return a list of orders', async(): Promise<void> => {
@@ -169,5 +179,12 @@ describe("Order Model", (): void => {
 		const result = await orderStore.update({ id: 1, user_id: "2", status: 'close' });
 
 		expect(result).toEqual({ id: 1, user_id: "2", status: 'close' });
+	});
+
+	it('method should delete the order', async(): Promise<void> => {
+		await orderStore.delete(1);
+		const result = await orderStore.index();
+
+		expect(result).toEqual([]);
 	});
 });

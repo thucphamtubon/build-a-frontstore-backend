@@ -33,33 +33,33 @@ as well as data shapes the frontend and backend have agreed meet the requirement
 ## Data Shapes
 #### Product Table
 ```
-id SERIAL PRIMARY KEY
-name VARCHAR(64) NOT NULL
-price INTEGER NOT NULL
+id integer not null
+name character varying(64) not null
+price integer not null
 ```
 
 #### User Table
 ```
-id SERIAL PRIMARY KEY
-username VARCHAR(100)
-password VARCHAR
-firstName VARCHAR(100)
-lastName VARCHAR(100)
+id integer not null
+username character varying(100)
+password character varying
+firstName character varying(100)
+lastName character varying(100)
 ```
 
 #### Orders table
 ```
-id SERIAL PRIMARY KEY
-status VARCHAR(15)
-user_id BIGINT REFERENCES users(id)
+id integer not null
+status character varying(15)
+user_id bigint
 ```
 
 #### Order Products Table
 ```
-id SERIAL PRIMARY KEY
-quantity INTEGER
-order_id BIGINT REFERENCES orders(id)
-product_id BIGINT REFERENCES products(id)
+id integer not null
+quantity integer
+order_id bigint
+product_id bigint
 ```
 
 

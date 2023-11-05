@@ -25,9 +25,9 @@
     "tsc-watch": "^6.0.4"
   },
   "scripts": {
+    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "jasmine": "npx tsc && jasmine",
     "build": "npx tsc",
-    "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "test": "export ENV=test && npx tsc && db-migrate --env test reset && db-migrate --env test up && jasmine && db-migrate --env test reset || db-migrate --env test reset",
     "migrate": "db-migrate up"
   },
