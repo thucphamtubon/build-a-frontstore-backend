@@ -29,11 +29,7 @@
     "build": "npx tsc",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "test": "export ENV=test && npx tsc && db-migrate --env test reset && db-migrate --env test up && jasmine && db-migrate --env test reset || db-migrate --env test reset",
-    "testdb": "db-migrate up && db-migrate reset",
-    "db-up": "db-migrate up",
-    "db-down": "db-migrate down",
-    "reset-test": "db-migrate --env test reset",
-    "reset": "db-migrate reset"
+    "migrate": "db-migrate up"
   },
   "author": "thucphamtubon",
   "license": "ISC",
