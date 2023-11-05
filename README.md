@@ -9,9 +9,8 @@ PORT=3000
 POSTGRES_HOST=127.0.0.1
 POSTGRES_DB=frontstore
 POSTGRES_DB_TEST=frontstore_test
-POSTGRES_USER = hungcm5
+POSTGRES_USER=hungcm5
 POSTGRES_PASSWORD=hungcm5
-TOKEN_SECRET=hungcm5
 CRYPT_PASSWORD=hungcm5
 SALT_ROUNDS=10
 TOKEN_SECRET=hungcm5
@@ -46,8 +45,6 @@ To drop the tables database: `db-migrate down`
 
 Start app: `yarn watch`
 
-Run test with `yarn test`
-
 ### Running Ports
 After start up, the server will start on port `3000` and the database on port `5432`
 
@@ -58,6 +55,11 @@ Tokens are passed along with the http header as
 ```
 Authorization   Bearer <token>
 ```
+
+## Testing
+Run test with
+
+`yarn test`
 
 ## Endpoint Access
 All endpoints are described in the [REQUIREMENT.md](REQUIREMENTS.md) file. 

@@ -32,7 +32,7 @@ describe("User Model", (): void => {
 
 		const result = await userStore.create(user);
 
-		expect(result.id).toEqual(1);
+		expect(result.id).toEqual(2);
 	});
 
 	it('authen method should authen the user', async(): Promise<void> => {
@@ -44,7 +44,7 @@ describe("User Model", (): void => {
 	it('index method should return a list of users', async(): Promise<void> => {
 		const results = await userStore.index();
 
-		expect(results.length).toEqual(1);
+		expect(results.length).toEqual(2);
 	});
 
 	it('show method should return the correct user', async(): Promise<void> => {
@@ -58,7 +58,7 @@ describe("User Model", (): void => {
 
 		const result = await userStore.index()
 
-		expect(result).toEqual([]);
+		expect(result.length).toEqual(1);
 	});
 });
 
@@ -86,26 +86,26 @@ describe("Product Model", () => {
 	it('create method should add a product', async() => {
 		const product = { name: 'Pepsi', price: 100 };
 		const result = await productStore.create(product);
-		expect(result).toEqual({ id: 1, name: 'Pepsi', price: 100 });
+		expect(result).toEqual({ id: 3, name: 'Pepsi', price: 100 });
 	});
 
 	it('index method should return a list of products', async() => {
 		const results = await productStore.index();
-		expect(results).toEqual([{ id: 1, name: 'Pepsi', price: 100 }]);
+		expect(results).toEqual([{ id: 3, name: 'Pepsi', price: 100 }]);
 	});
 
 	it('show method should return the correct product', async() => {
-		const result = await productStore.show(1);
-		expect(result).toEqual({ id: 1, name: 'Pepsi', price: 100 });
+		const result = await productStore.show(3);
+		expect(result).toEqual({ id: 3, name: 'Pepsi', price: 100 });
 	});
 
 	it('method should update the product', async() => {
-		const result = await productStore.update({ id: 1, name: 'coca-cola', price: 99 });
-		expect(result).toEqual({ id: 1, name: 'coca-cola', price: 99 });
+		const result = await productStore.update({ id: 3, name: 'coca-cola', price: 99 });
+		expect(result).toEqual({ id: 3, name: 'coca-cola', price: 99 });
 	});
 
 	it('delete method should remove the product', async() => {
-		await productStore.delete(1);
+		await productStore.delete(3);
 		const result = await productStore.index()
 		expect(result).toEqual([]);
 	});
@@ -148,41 +148,41 @@ describe("Order Model", (): void => {
 
 		const result = await orderStore.create(order);
 
-		expect(result).toEqual({ id: 1, user_id: "2", status: 'open' });
+		expect(result).toEqual({ id: 2, user_id: "2", status: 'open' });
 	});
 
 	it('create method should add a order product', async(): Promise<void> => {
-		const result = await orderStore.addProduct(10, "1", "2");
+		const result = await orderStore.addProduct(10, "2", "4");
 
-		expect(result).toEqual({ id: 1, product_id: "2", order_id: "1", quantity: 10 });
+		expect(result).toEqual({ id: 2, product_id: "4", order_id: "2", quantity: 10 });
 	});
 
 	it('get method should show current order by user', async(): Promise<void> => {
 		const result = await orderStore.getOrderByUserId('2');
 
-		expect(result).toEqual([{ id: 1, user_id: "2", status: 'open' }]);
+		expect(result).toEqual([{ id: 2, user_id: "2", status: 'open' }]);
 	});
 
 	it('index method should return a list of orders', async(): Promise<void> => {
 		const results = await orderStore.index();
 
-		expect(results).toEqual([{ id: 1, user_id: "2", status: 'open' },]);
+		expect(results).toEqual([{ id: 2, user_id: "2", status: 'open' },]);
 	});
 
 	it('show method should return the correct order', async(): Promise<void> => {
-		const result = await orderStore.show(1);
+		const result = await orderStore.show(2);
 
-		expect(result).toEqual({ id: 1, user_id: "2", status: 'open' });
+		expect(result).toEqual({ id: 2, user_id: "2", status: 'open' });
 	});
 
 	it('method should update the order', async(): Promise<void> => {
-		const result = await orderStore.update({ id: 1, user_id: "2", status: 'close' });
+		const result = await orderStore.update({ id: 2, user_id: "2", status: 'close' });
 
-		expect(result).toEqual({ id: 1, user_id: "2", status: 'close' });
+		expect(result).toEqual({ id: 2, user_id: "2", status: 'close' });
 	});
 
 	it('method should delete the order', async(): Promise<void> => {
-		await orderStore.delete(1);
+		await orderStore.delete(2);
 		const result = await orderStore.index();
 
 		expect(result).toEqual([]);

@@ -6,7 +6,7 @@ const store = new OrderStore();
 
 const orderRoutes = (app: express.Application): void => {
 	app.get('/orders', verifyAuthToken, index);
-	app.get('/orders/:user_id', verifyAuthToken, showCurrentOrderByUser);
+	app.get('/orders/:user_id/order-by-user', verifyAuthToken, showCurrentOrderByUser);
 	app.post('/orders', verifyAuthToken, create);
 	app.get('/orders/:id', verifyAuthToken, show);
 	app.put('/orders', verifyAuthToken, update);
@@ -65,7 +65,7 @@ const show = async(req: Request, res: Response) => {
 
 const update = async(req: Request, res: Response) => {
 	const order: Order = {
-		id: +req.params.id,
+		id: +req.body.id,
 		status: req.body.status,
 		user_id: req.body.user_id,
 	}

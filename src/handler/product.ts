@@ -53,7 +53,7 @@ const create = async(req: Request, res: Response): Promise<void> => {
 
 const update = async(req: Request, res: Response) => {
 	const product: Product = {
-		id: +req.params.id,
+		id: +req.body.id,
 		name: req.body.name,
 		price: +req.body.price,
 	}

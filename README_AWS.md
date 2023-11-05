@@ -1,0 +1,12 @@
+```
+PORT=3000
+POSTGRES_HOST=database-1.ccopilleteoq.ap-southeast-2.rds.amazonaws.com
+POSTGRES_DB=postgres
+POSTGRES_DB_TEST=frontstore_test
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=Hung1991
+TOKEN_SECRET=hungcm5
+CRYPT_PASSWORD=hungcm5
+SALT_ROUNDS=10
+ENV=dev
+```

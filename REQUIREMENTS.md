@@ -19,11 +19,11 @@ as well as data shapes the frontend and backend have agreed meet the requirement
 #### Users
 - Index: [GET]  'http://localhost:3000/uers' [token required]
 - Show: [GET] 'http://localhost:3000/users/:id' [token required]
-- Create: [POST] 'http://localhost:3000/users' [token required]
+- Create: [POST] 'http://localhost:3000/users'
 
 #### Orders
 - Index: [GET]  'http://localhost:3000/orders' [token required]
-- Current Order by user: [GET] 'http://localhost:3000/order/:user_id [token required]
+- Current Order by user: [GET] 'http://localhost:3000/orders/:user_id/order-by-user [token required]
 - Create: [POST]  'http://localhost:3000/orders/:id' [token required]
 - Show: [GET]  'http://localhost:3000/orders/:id' [token required]
 - Update: [PUT]  'http://localhost:3000/orders' [token required]
